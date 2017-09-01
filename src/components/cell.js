@@ -11,6 +11,8 @@ export default class Cell extends React.Component {
 		rowIndex: PropTypes.number.isRequired,
 		columnIndex: PropTypes.number.isRequired,
 		piece: PropTypes.string,
+		selected: PropTypes.bool,
+		canMoveHere: PropTypes.bool,
 	};
 
 	render() {
@@ -20,10 +22,18 @@ export default class Cell extends React.Component {
 			rowIndex,
 			columnIndex,
 			piece,
+			selected,
+			canMoveHere,
 		} = this.props;
 
 		const isBlack = (rowIndex + columnIndex) % 2 === 0;
 		let backgroundColor = isBlack ? '#F0D9B5' : '#B58863';
+
+		if (selected) {
+			backgroundColor = '#48d1cc';
+		} else if (canMoveHere) {
+			backgroundColor = '#00ffff';
+		}
 
 		let pieceView = null;
 		if(piece) {

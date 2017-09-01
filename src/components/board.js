@@ -22,6 +22,7 @@ export default class Board extends React.Component {
 
 		this.state = {
 			position: chessRules.getInitialPosition(),
+			selectedIndex: null,
 		};
 	}
 
@@ -33,7 +34,8 @@ export default class Board extends React.Component {
 		} = this.props;
 
 		const {
-			position
+			position,
+			selectedIndex,
 		} = this.state;
 
 		const board = position.board;
@@ -41,6 +43,15 @@ export default class Board extends React.Component {
 
 		const cellSize = size/8;
 
+		const availableMoves = chessRules.getAvailableMoves(position);
+
+		let canMoveHereArray = [];
+		availableMoves.forEach( function (move) {
+			if(move.src === selectedIndex) {
+				canMoveHereArray.push(move.dst);
+			}
+		});
+		
 		board.forEach( (cell , index) => {
 
 			const rowIndex = Math.floor(index/8);
@@ -49,6 +60,16 @@ export default class Board extends React.Component {
 			let piece = null;
 			if(cell) {
 				piece = cell.side.concat(cell.type);
+			}
+
+			let selected = false;
+			if(selectedIndex === index) {
+				selected = true
+			}
+
+			let canMoveHere = false;
+			if( canMoveHereArray.includes(index) ) {
+				canMoveHere = true;
 			}
 
 			if(!rowViews[rowIndex]) {
@@ -61,6 +82,8 @@ export default class Board extends React.Component {
 					rowIndex={rowIndex}
 					columnIndex={columnIndex}
 					piece={piece}
+					selected={selected}
+					canMoveHere={canMoveHere}
 				/>
 			);
 
