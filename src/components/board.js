@@ -64,8 +64,6 @@ export default class Board extends React.Component {
 			);
 		});
 
-		console.log(boardView);
-
 		return boardView;
 	}
 
