@@ -64,7 +64,7 @@ export default class Board extends React.Component {
 
 		const boardView = rowViews.map( (row,index) => {
 			return (
-				<View key={index} style={{ flexDirection:'column' }}>
+				<View key={index} style={{ flexDirection:'row' }}>
 					{ row }
 				</View>
 			);
@@ -76,7 +76,7 @@ export default class Board extends React.Component {
 	render() {
 
 		return (
-			<View style={{ flexDirection:'row' }}>
+			<View style={{ flexDirection:'column' }}>
 				{ this.renderCells() }
 			</View>
 		);
