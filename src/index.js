@@ -1,15 +1,21 @@
 import React from 'react';
-import { View , Text} from 'react-native';
+import { View , Text , Dimensions } from 'react-native';
+
+import Board from './components/board';
 
 export default class Chess extends React.Component {
 
 	render() {
+
+		const {
+			width,
+			height,
+		} = Dimensions.get('window');
+
+		const size = Math.min(width,height);
+
 		return (
-			<View style={{ flex:1, backgroundColor:'#000', alignItems: 'center' }}>
-				<Text style={{ color:'#fff' }}>
-					Chess
-				</Text>
-			</View>
+			<Board size={size} />
 		);
 	}
 }
