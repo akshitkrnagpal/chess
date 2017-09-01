@@ -1,6 +1,8 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View , Image } from 'react-native';
 import PropTypes from 'prop-types';
+
+import PieceImages from '../images/pieces';
 
 export default class Cell extends React.Component {
 
@@ -8,6 +10,7 @@ export default class Cell extends React.Component {
 		size: PropTypes.number.isRequired,
 		rowIndex: PropTypes.number.isRequired,
 		columnIndex: PropTypes.number.isRequired,
+		piece: PropTypes.string,
 	};
 
 	render() {
@@ -16,12 +19,21 @@ export default class Cell extends React.Component {
 			size,
 			rowIndex,
 			columnIndex,
+			piece,
 		} = this.props;
 
 		const isBlack = (rowIndex + columnIndex) % 2 === 0;
 		let backgroundColor = isBlack ? '#F0D9B5' : '#B58863';
+
+		let pieceView = null;
+		if(piece) {
+			pieceView = <Image source={PieceImages[piece]} style={{ width:size , height:size }} />
+		}
+
 		return (
-			<View style={{ backgroundColor, width: size, height: size }} />
+			<View style={{ backgroundColor, width: size, height: size }}>
+				{ pieceView }
+			</View>
 		);
 	}
 }

@@ -45,12 +45,18 @@ export default class Board extends React.Component {
 				rowViews[rowIndex]=[];
 			}
 
+			let piece = null;
+			if(cell) {
+				piece = cell.side.concat(cell.type);
+			}
+
 			rowViews[rowIndex].push(
 				<Cell
 					key={index}
 					size={cellSize}
 					rowIndex={rowIndex}
 					columnIndex={columnIndex}
+					piece={piece}
 				/>
 			);
 
