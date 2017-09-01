@@ -10,7 +10,12 @@ export default class Board extends React.Component {
 
 	static propTypes = {
 		size: PropTypes.number.isRequired,
+		color: PropTypes.oneOf(['W','B']),
 	};
+
+	static defaultProps = {
+		color: 'W',
+	}
 
 	constructor(props) {
 		super(props);
@@ -24,6 +29,7 @@ export default class Board extends React.Component {
 
 		const {
 			size,
+			color,
 		} = this.props;
 
 		const {
@@ -35,21 +41,19 @@ export default class Board extends React.Component {
 
 		const cellSize = size/8;
 
-
 		board.forEach( (cell , index) => {
 
 			const rowIndex = Math.floor(index/8);
 			const columnIndex = index%8;
-
-			if(!rowViews[rowIndex]) {
-				rowViews[rowIndex]=[];
-			}
 
 			let piece = null;
 			if(cell) {
 				piece = cell.side.concat(cell.type);
 			}
 
+			if(!rowViews[rowIndex]) {
+				rowViews[rowIndex]=[];
+			}
 			rowViews[rowIndex].push(
 				<Cell
 					key={index}
@@ -62,13 +66,17 @@ export default class Board extends React.Component {
 
 		});
 
-		const boardView = rowViews.map( (row,index) => {
+		let boardView = rowViews.map( (row,index) => {
 			return (
 				<View key={index} style={{ flexDirection:'row' }}>
 					{ row }
 				</View>
 			);
 		});
+
+		if(color === 'W'){
+			boardView.reverse();
+		}
 
 		return boardView;
 	}
