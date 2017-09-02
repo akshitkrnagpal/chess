@@ -10,11 +10,11 @@ export default class Board extends React.Component {
 
 	static propTypes = {
 		size: PropTypes.number.isRequired,
-		color: PropTypes.oneOf(['W','B']),
+		currentPlayer: PropTypes.oneOf(['W','B']),
 	};
 
 	static defaultProps = {
-		color: 'W',
+		currentPlayer: 'W',
 	}
 
 	handleClick (index) {
@@ -25,10 +25,9 @@ export default class Board extends React.Component {
 			isSelectable,
 			canMoveHereArray,
 		} = this.state;
-
+		
 		if(isSelectable.includes(index)) {
 			this.setState({
-				...this.state,
 				selectedIndex: index,
 				canMoveHereArray: [],
 			});
@@ -38,7 +37,6 @@ export default class Board extends React.Component {
 			const move = { src: selectedIndex , dst: index };
 			updatedPosition = chessRules.applyMove(position,move);
 			this.setState({
-				...this.state,
 				selectedIndex: null,
 				position: updatedPosition,
 				isSelectable: [],
@@ -61,7 +59,7 @@ export default class Board extends React.Component {
 
 		const {
 			size,
-			color,
+			currentPlayer,
 		} = this.props;
 
 		const {
@@ -133,7 +131,7 @@ export default class Board extends React.Component {
 			);
 		});
 
-		if(color === 'W'){
+		if(currentPlayer === 'W'){
 			boardView.reverse();
 		}
 
@@ -141,7 +139,6 @@ export default class Board extends React.Component {
 	}
 
 	render() {
-
 		return (
 			<View style={{ flexDirection:'column' }}>
 				{ this.renderCells() }
