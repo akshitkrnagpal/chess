@@ -1,5 +1,5 @@
 import React from 'react';
-import { View , Image } from 'react-native';
+import { View , Image , TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 
 import PieceImages from '../images/pieces';
@@ -13,6 +13,7 @@ export default class Cell extends React.Component {
 		piece: PropTypes.string,
 		selected: PropTypes.bool,
 		canMoveHere: PropTypes.bool,
+		handleClick: PropTypes.func,
 	};
 
 	render() {
@@ -24,6 +25,7 @@ export default class Cell extends React.Component {
 			piece,
 			selected,
 			canMoveHere,
+			handleClick,
 		} = this.props;
 
 		const isBlack = (rowIndex + columnIndex) % 2 === 0;
@@ -41,9 +43,11 @@ export default class Cell extends React.Component {
 		}
 
 		return (
-			<View style={{ backgroundColor, width: size, height: size }}>
-				{ pieceView }
-			</View>
+			<TouchableWithoutFeedback onPress={handleClick}>
+				<View style={{ backgroundColor, width: size, height: size }}>
+					{ pieceView }
+				</View>
+			</TouchableWithoutFeedback>
 		);
 	}
 }

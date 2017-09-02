@@ -17,12 +17,43 @@ export default class Board extends React.Component {
 		color: 'W',
 	}
 
+	handleClick (index) {
+
+		const {
+			position,
+			selectedIndex,
+			isSelectable,
+			canMoveHereArray,
+		} = this.state;
+
+		if(isSelectable.includes(index)) {
+			this.setState({
+				...this.state,
+				selectedIndex: index,
+				canMoveHereArray: [],
+			});
+		}
+
+		if(canMoveHereArray.includes(index)) {
+			const move = { src: selectedIndex , dst: index };
+			updatedPosition = chessRules.applyMove(position,move);
+			this.setState({
+				...this.state,
+				selectedIndex: null,
+				position: updatedPosition,
+				isSelectable: [],
+				canMoveHereArray: [],
+			});
+		}
+	}
+
 	constructor(props) {
 		super(props);
-
 		this.state = {
 			position: chessRules.getInitialPosition(),
 			selectedIndex: null,
+			isSelectable: [],
+			canMoveHereArray: [],
 		};
 	}
 
@@ -36,6 +67,8 @@ export default class Board extends React.Component {
 		const {
 			position,
 			selectedIndex,
+			isSelectable,
+			canMoveHereArray,
 		} = this.state;
 
 		const board = position.board;
@@ -45,13 +78,15 @@ export default class Board extends React.Component {
 
 		const availableMoves = chessRules.getAvailableMoves(position);
 
-		let canMoveHereArray = [];
 		availableMoves.forEach( function (move) {
 			if(move.src === selectedIndex) {
 				canMoveHereArray.push(move.dst);
 			}
+			if(!isSelectable.includes(move.src)) {
+				isSelectable.push(move.src);
+			}
 		});
-		
+
 		board.forEach( (cell , index) => {
 
 			const rowIndex = Math.floor(index/8);
@@ -84,6 +119,7 @@ export default class Board extends React.Component {
 					piece={piece}
 					selected={selected}
 					canMoveHere={canMoveHere}
+					handleClick={this.handleClick.bind(this,index)}
 				/>
 			);
 
