@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Modal, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import chessRules from 'chess-rules';
 
@@ -130,10 +130,56 @@ class Board extends React.Component {
         return boardView;
     }
 
+    getGameStatus() {
+        return chessRules.getGameStatus(this.state.position);
+    }
+
+    showModal() {
+        return (
+            <Modal
+                animationType='slide'
+                transparent
+                visible={this.getGameStatus() !== 'OPEN'}
+            >
+                <View
+                    style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: '100%',
+                    }}
+                >
+                    <Text
+                        style={{
+                            textAlign: 'center',
+                            backgroundColor: 'white',
+                            paddingHorizontal: 28,
+                            paddingVertical: 16,
+                            fontSize: 18,
+                            borderRadius: 20,
+                        }}
+                    >
+                        {this.getWinnerText()}
+                    </Text>
+                </View>
+            </Modal>
+        );
+    }
+
+    getWinnerText() {
+        let whiteWon = this.getGameStatus() === 'WHITEWON';
+        let blackWon = this.getGameStatus() === 'BLACKWON';
+
+        if (whiteWon) return 'White Wins';
+        if (blackWon) return 'Black Wins';
+
+        return 'Match Draw';
+    }
+
     render() {
         return (
             <View style={{ flexDirection: 'column' }}>
                 {this.renderCells()}
+                {this.showModal()}
             </View>
         );
     }
