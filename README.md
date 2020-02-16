@@ -1,8 +1,9 @@
-# Chess
+<h1 align='center'>Chess</h1>
+<p align='center'>Using React Native (Expo)</p>
 
-Using React Native (Expo)
-
-![demo-gif](https://media.giphy.com/media/MBTy1lOKfOW3e8CITS/giphy.gif)
+<p align="center">
+  <img src='https://media.giphy.com/media/MBTy1lOKfOW3e8CITS/giphy.gif' />
+</p>
 
 ## Development
 
