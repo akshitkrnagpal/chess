@@ -1,0 +1,24 @@
+name: Update Dependencies Daily
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - run: npx npm-check-updates -u
+    - run: yarn install
+    - uses: actions-js/push@v1.2
+      with: 
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        author_email: akshitkrnagpal@gmail.com
+        author_name: akshitkrnagpal
+        message: Updated Dependencies
+      
+  
