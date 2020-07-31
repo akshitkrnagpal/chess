@@ -9,16 +9,16 @@
   },
   "dependencies": {
     "chess-rules": "github:akshitkrnagpal/chess-rules",
-    "expo": "36.0.2",
+    "expo": "38.0.9",
     "os": "0.1.1",
-    "react": "16.9.0",
-    "react-dom": "16.9.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
-    "react-native-web": "0.11.7",
-    "util": "0.12.1"
+    "react-native-web": "0.13.4",
+    "util": "0.12.3"
   },
   "devDependencies": {
-    "@babel/core": "7.8.4",
-    "babel-preset-expo": "8.0.0"
+    "@babel/core": "7.11.0",
+    "babel-preset-expo": "8.2.3"
   }
 }
