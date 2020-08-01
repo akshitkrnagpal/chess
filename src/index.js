@@ -10,8 +10,8 @@ class Chess extends React.Component {
         return (
             <View
                 style={{
-                    height: Platform.OS === 'ios' ? height : '100%',
-                    width: Platform.OS === 'ios' ? width : '100%',
+                    height: Platform.OS !== 'web' ? height : '100%',
+                    width: Platform.OS !== 'web' ? width : '100%',
                     alignItems: 'center',
                     justifyContent: 'center',
                 }}

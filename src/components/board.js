@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import Modal from 'modal-react-native-web';
+import Modal from 'react-native-modal';
 import PropTypes from 'prop-types';
 import chessRules from 'chess-rules';
 
@@ -179,15 +179,11 @@ class Board extends React.Component {
 
     render() {
         return (
-            <View
-                style={{
-                    maxWidth: 375,
-                    maxHeight: 375,
-                    flexDirection: 'column',
-                }}
-            >
-                {this.renderCells()}
-                {this.showModal()}
+            <View style={{ maxWidth: 375 }}>
+                <View style={{ flexDirection: 'column' }}>
+                    {this.renderCells()}
+                    {this.showModal()}
+                </View>
             </View>
         );
     }
