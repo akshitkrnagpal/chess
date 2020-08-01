@@ -1,10 +1,17 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import Modal from 'react-native-modal';
 import PropTypes from 'prop-types';
 import chessRules from 'chess-rules';
 
 import Cell from './cell';
+
+const initialState = {
+    position: chessRules.getInitialPosition(),
+    selectedIndex: null,
+    isSelectable: [],
+    canMoveHereArray: [],
+};
 
 class Board extends React.Component {
     static propTypes = {
@@ -18,12 +25,11 @@ class Board extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            position: chessRules.getInitialPosition(),
-            selectedIndex: null,
-            isSelectable: [],
-            canMoveHereArray: [],
-        };
+        this.state = initialState;
+    }
+
+    reset() {
+        this.setState(initialState);
     }
 
     handleClick(index) {
@@ -150,18 +156,23 @@ class Board extends React.Component {
                         height: '100%',
                     }}
                 >
-                    <Text
+                    <View
                         style={{
                             textAlign: 'center',
                             backgroundColor: 'white',
-                            paddingHorizontal: 28,
-                            paddingVertical: 16,
-                            fontSize: 18,
-                            borderRadius: 20,
+                            paddingHorizontal: 64,
+                            paddingVertical: 32,
+                            borderRadius: 10,
                         }}
                     >
-                        {this.getWinnerText()}
-                    </Text>
+                        <Text style={{ fontSize: 18, marginBottom: 14 }}>
+                            {this.getWinnerText()}
+                        </Text>
+                        <Button
+                            title='New Game'
+                            onPress={this.reset.bind(this)}
+                        />
+                    </View>
                 </View>
             </Modal>
         );
