@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.11.0",
-    "babel-preset-expo": "8.2.3"
+    "babel-preset-expo": "8.2.3",
+    "expo-cli": "3.23.1"
   }
 }
