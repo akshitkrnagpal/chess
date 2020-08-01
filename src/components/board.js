@@ -70,7 +70,7 @@ class Board extends React.Component {
 
         const availableMoves = chessRules.getAvailableMoves(position);
 
-        availableMoves.forEach(function(move) {
+        availableMoves.forEach(function (move) {
             if (move.src === selectedIndex) {
                 canMoveHereArray.push(move.dst);
             }
