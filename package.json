@@ -10,6 +10,7 @@
   "dependencies": {
     "chess-rules": "github:akshitkrnagpal/chess-rules",
     "expo": "38.0.9",
+    "modal-react-native-web": "0.2.0",
     "os": "0.1.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",

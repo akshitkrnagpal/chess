@@ -1,5 +1,6 @@
 import React from 'react';
-import { Modal, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import Modal from 'modal-react-native-web';
 import PropTypes from 'prop-types';
 import chessRules from 'chess-rules';
 
@@ -140,6 +141,7 @@ class Board extends React.Component {
                 animationType='slide'
                 transparent
                 visible={this.getGameStatus() !== 'OPEN'}
+                ariaHideApp={false}
             >
                 <View
                     style={{
@@ -177,7 +179,13 @@ class Board extends React.Component {
 
     render() {
         return (
-            <View style={{ flexDirection: 'column' }}>
+            <View
+                style={{
+                    maxWidth: 375,
+                    maxHeight: 375,
+                    flexDirection: 'column',
+                }}
+            >
                 {this.renderCells()}
                 {this.showModal()}
             </View>
