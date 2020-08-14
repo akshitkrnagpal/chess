@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import Modal from 'react-native-modal';
-import PropTypes from 'prop-types';
 import chessRules from 'chess-rules';
 
 import Cell from './cell';
@@ -14,18 +13,20 @@ const initialState = {
 };
 
 class Board extends React.Component {
-    static propTypes = {
-        size: PropTypes.number.isRequired,
-        currentPlayer: PropTypes.oneOf(['W', 'B']),
-    };
-
-    static defaultProps = {
-        currentPlayer: 'W',
-    };
-
     constructor(props) {
         super(props);
         this.state = initialState;
+    }
+
+    componentDidMount() {
+        const { position } = this.state;
+        const { whiteTimer, blackTimer } = this.props.timers;
+
+        if (position.turn === 'W') {
+            whiteTimer.start();
+        } else {
+            blackTimer.start();
+        }
     }
 
     reset() {
@@ -49,6 +50,16 @@ class Board extends React.Component {
 
         if (canMoveHereArray.includes(index)) {
             const move = { src: selectedIndex, dst: index };
+            const { whiteTimer, blackTimer } = this.props.timers;
+            const { turn } = position;
+            if (turn === 'W') {
+                whiteTimer.pause();
+                blackTimer.start();
+            } else {
+                whiteTimer.start();
+                blackTimer.pause();
+            }
+
             const updatedPosition = chessRules.applyMove(position, move);
 
             this.setState({
@@ -130,9 +141,7 @@ class Board extends React.Component {
             );
         });
 
-        if (currentPlayer === 'W') {
-            boardView.reverse();
-        }
+        boardView.reverse();
 
         return boardView;
     }
@@ -190,7 +199,7 @@ class Board extends React.Component {
 
     render() {
         return (
-            <View style={{ maxWidth: 375 }}>
+            <View>
                 <View style={{ flexDirection: 'column' }}>
                     {this.renderCells()}
                     {this.showModal()}

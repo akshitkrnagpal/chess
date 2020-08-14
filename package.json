@@ -11,13 +11,18 @@
   "dependencies": {
     "chess-rules": "github:akshitkrnagpal/chess-rules",
     "expo": "38.0.9",
+    "faker": "4.1.0",
     "modal-react-native-web": "0.2.0",
+    "moment": "2.27.0",
+    "moment-duration-format": "2.3.2",
     "os": "0.1.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
     "react-native-modal": "11.5.6",
     "react-native-web": "0.13.4",
+    "styled-components": "5.1.1",
+    "use-timer": "1.3.0",
     "util": "0.12.3"
   },
   "devDependencies": {
