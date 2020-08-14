@@ -2,8 +2,8 @@ import React, { useMemo } from 'react';
 import { Dimensions, SafeAreaView, View, Platform } from 'react-native';
 import styled from 'styled-components/native';
 import { useTimer } from 'use-timer';
-import { image, internet, name } from 'faker';
 import moment from 'moment';
+import { name, avatar } from 'random-profile-generator';
 
 import Board from './components/board';
 import User from './components/user';
@@ -21,13 +21,13 @@ const Game = styled(View)`
 `;
 
 const white = {
-    name: name.findName(),
-    avatar: image.avatar(),
+    name: name(),
+    avatar: avatar(),
 };
 
 const black = {
-    name: name.findName(),
-    avatar: image.avatar(),
+    name: name(),
+    avatar: avatar(),
 };
 
 const TIME = moment.duration(5, 'minutes');

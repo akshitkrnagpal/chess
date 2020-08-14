@@ -4669,6 +4669,11 @@ chalk@^4.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+chance@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/chance/-/chance-1.0.4.tgz#2dbc3ea6ad0541f7f965bd0af25d1ca275c853c4"
+  integrity sha1-Lbw+pq0FQff5Zb0K8l0conXIU8Q=
+
 chardet@^0.4.0:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.4.2.tgz#b5473b33dc97c424e5d98dc87d55d4d8a29c8bf2"
@@ -6728,11 +6733,6 @@ extsprintf@^1.2.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
-
-faker@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/faker/-/faker-4.1.0.tgz#1e45bbbecc6774b3c195fad2835109c6d748cc3f"
-  integrity sha1-HkW7vsxndLPBlfrSg1EJxtdIzD8=
 
 fancy-log@^1.3.2:
   version "1.3.3"
@@ -9982,12 +9982,17 @@ modal-react-native-web@0.2.0:
   dependencies:
     warning "^4.0.1"
 
-moment-duration-format@^2.3.2:
+moment-duration-format@2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/moment-duration-format/-/moment-duration-format-2.3.2.tgz#5fa2b19b941b8d277122ff3f87a12895ec0d6212"
   integrity sha512-cBMXjSW+fjOb4tyaVHuaVE/A5TqkukDWiOfxxAjY+PEqmmBQlLwn+8OzwPiG3brouXKY5Un4pBjAeB6UToXHaQ==
 
-moment@^2.10.6, moment@^2.27.0:
+moment@2.15.2:
+  version "2.15.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.15.2.tgz#1bfdedf6a6e345f322fe956d5df5bd08a8ce84dc"
+  integrity sha1-G/3t9qbjRfMi/pVtXfW9CKjOhNw=
+
+moment@2.27.0, moment@^2.10.6:
   version "2.27.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.27.0.tgz#8bff4e3e26a236220dfe3e36de756b6ebaa0105d"
   integrity sha512-al0MUK7cpIcglMv3YF13qSgdAIqxHTO7brRtaz3DlSULbqfazqkc5kEjNrLDOM7fsjshoFIihnU8snrP7zUvhQ==
@@ -11792,6 +11797,15 @@ quick-lru@^5.1.1:
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-5.1.1.tgz#366493e6b3e42a3a6885e2e99d18f80fb7a8c932"
   integrity sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==
 
+random-profile-generator@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/random-profile-generator/-/random-profile-generator-2.3.0.tgz#2100581b446f36e632e799672ad8d215bac128c7"
+  integrity sha1-IQBYG0RvNuYy55lnKtjSFbrBKMc=
+  dependencies:
+    chance "1.0.4"
+    moment "2.15.2"
+    unique-random-array "1.0.0"
+
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5, randombytes@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.1.0.tgz#df6f84372f0270dc65cdf6291349ab7a473d4f2a"
@@ -13411,7 +13425,7 @@ style-loader@~1.2.1:
     loader-utils "^2.0.0"
     schema-utils "^2.6.6"
 
-styled-components@^5.1.1:
+styled-components@5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-5.1.1.tgz#96dfb02a8025794960863b9e8e365e3b6be5518d"
   integrity sha512-1ps8ZAYu2Husx+Vz8D+MvXwEwvMwFv+hqqUwhNlDN5ybg6A+3xyW1ECrAgywhvXapNfXiz79jJyU0x22z0FFTg==
@@ -14060,6 +14074,18 @@ unique-filename@^1.1.1:
   dependencies:
     unique-slug "^2.0.0"
 
+unique-random-array@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/unique-random-array/-/unique-random-array-1.0.0.tgz#42b3721c579388d8b667c93c2dbde3d5d81a9136"
+  integrity sha1-QrNyHFeTiNi2Z8k8Lb3j1dgakTY=
+  dependencies:
+    unique-random "^1.0.0"
+
+unique-random@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/unique-random/-/unique-random-1.0.0.tgz#ce3e224c8242cd33a0e77b0d7180d77e6b62d0c4"
+  integrity sha1-zj4iTIJCzTOg53sNcYDXfmti0MQ=
+
 unique-slug@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/unique-slug/-/unique-slug-2.0.2.tgz#baabce91083fc64e945b0f3ad613e264f7cd4e6c"
@@ -14200,7 +14226,7 @@ use-subscription@^1.0.0:
   dependencies:
     object-assign "^4.1.1"
 
-use-timer@^1.3.0:
+use-timer@1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/use-timer/-/use-timer-1.3.0.tgz#b0b99006f2fd9bde924e1da6d38409d90b768672"
   integrity sha512-JnGXpPCA9/YOqXF9LLdNAYwIEjAWQFrCisb2c21lkgHk56gIGwR4zin3geqrDPVK9mIqHhCD7qmvqDOOJ/sMhw==
