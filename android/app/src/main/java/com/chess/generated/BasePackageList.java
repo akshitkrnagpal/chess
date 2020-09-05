@@ -1,4 +1,4 @@
-package com.chess.generated;
+package com.akshitkrnagpal.chess.generated;
 
 import java.util.Arrays;
 import java.util.List;

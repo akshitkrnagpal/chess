@@ -32,7 +32,7 @@
       "package": "com.akshitkrnagpal.chess",
       "versionCode": 1
     },
-    "entryPoint": "node_modules/expo/AppEntry.js"
+    "entryPoint": "index.js"
   },
   "displayName": "Chess App",
   "name": "chess"
