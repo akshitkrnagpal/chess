@@ -1,9 +1,9 @@
-import 'expo/build/Expo.fx';
-import registerRootComponent from 'expo/build/launch/registerRootComponent';
-import { activateKeepAwake } from 'expo-keep-awake';
+import { AppRegistry, Platform } from 'react-native';
+import App from './App';
 
-import app from './src/index';
+AppRegistry.registerComponent('chess', () => App);
 
-__DEV__ && activateKeepAwake();
-
-registerRootComponent(app);
+if (Platform.OS === 'web') {
+  const rootTag = document.getElementById('root') || document.getElementById('main');
+  AppRegistry.runApplication('chess', { rootTag });
+}

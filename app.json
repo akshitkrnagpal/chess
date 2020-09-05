@@ -24,7 +24,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
-  }
+      "bundleIdentifier": "com.akshitkrnagpal.chess",
+      "supportsTablet": true,
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.akshitkrnagpal.chess",
+      "versionCode": 1
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
+  },
+  "displayName": "Chess App",
+  "name": "chess"
 }
