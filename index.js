@@ -1,9 +1,8 @@
-import 'expo/build/Expo.fx';
-import registerRootComponent from 'expo/build/launch/registerRootComponent';
-import { activateKeepAwake } from 'expo-keep-awake';
+import { registerRootComponent } from 'expo';
 
-import app from './src/index';
+import App from './src/index';
 
-__DEV__ && activateKeepAwake();
-
-registerRootComponent(app);
+// registerRootComponent calls AppRegistry.registerComponent('main', () => App);
+// It also ensures that whether you load the app in the Expo client or in a native build,
+// the environment is set up appropriately
+registerRootComponent(App);
