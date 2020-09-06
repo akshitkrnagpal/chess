@@ -23,7 +23,11 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.akshitkrnagpal.chess",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.akshitkrnagpal.chess"
     }
   }
 }
