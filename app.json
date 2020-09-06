@@ -28,7 +28,6 @@
     },
     "android": {
       "package": "com.akshitkrnagpal.chess"
-    },
-    "sdkVersion": "38.0.0"
+    }
   }
 }
