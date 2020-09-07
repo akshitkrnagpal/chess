@@ -10,27 +10,27 @@ const Container = styled(View)`
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 4rem;
+    height: 64px;
     align-items: center;
     justify-content: center;
 `;
 
 const Avatar = styled(Image)`
-    height: 3rem;
-    width: 3rem;
-    padding: 0.5rem;
-    border-radius: 50%;
+    height: 48px;
+    width: 48px;
+    padding: 8px;
+    border-radius: 24px;
 `;
 
 const Name = styled(Text)`
-    padding: 0.5rem;
-    font-size: 1rem;
+    padding: 8px;
+    font-size: 16px;
     flex: 1;
 `;
 
 const Time = styled(Text)`
-    font-size: 1.25rem;
-    padding: 0.5rem;
+    font-size: 20px;
+    padding: 8px;
 `;
 
 const User = ({ timer, avatar, name }) => {
