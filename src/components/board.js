@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Button } from 'react-native';
 import Modal from 'react-native-modal';
 import chessRules from 'chess-rules';
+import { calculateBestMove } from 'chess-ai';
 
 import Cell from './cell';
 
@@ -68,6 +69,24 @@ class Board extends React.Component {
                 isSelectable: [],
                 canMoveHereArray: [],
             });
+
+            const playComputerMove = () => {
+                const nextMove = calculateBestMove(updatedPosition);
+
+                this.setState({
+                    position: chessRules.applyMove(updatedPosition, nextMove),
+                });
+
+                if (turn === 'W') {
+                    blackTimer.pause();
+                    whiteTimer.start();
+                } else {
+                    blackTimer.start();
+                    whiteTimer.pause();
+                }
+            };
+
+            setTimeout(playComputerMove, 5000);
         }
     }
 

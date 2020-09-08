@@ -7,7 +7,8 @@
     "build:web": "expo build:web"
   },
   "dependencies": {
-    "chess-rules": "github:akshitkrnagpal/chess-rules",
+    "chess-ai": "github:chess-react-native/chess-ai",
+    "chess-rules": "github:chess-react-native/chess-rules",
     "expo": "^38.0.0",
     "expo-splash-screen": "^0.5.0",
     "expo-status-bar": "^1.0.0",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.11.6",
+    "@expo/webpack-config": "^0.12.29",
     "babel-jest": "26.3.0",
     "babel-preset-expo": "^8.2.3",
     "jest": "26.4.2",
