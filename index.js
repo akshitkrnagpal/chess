@@ -1,6 +1,12 @@
-import { registerRootComponent } from 'expo';
+import { registerRootComponent } from "expo";
+import * as Sentry from "@sentry/react-native";
+import { SENTRY_DSN } from "@env";
 
-import App from './src/index';
+import App from "./src/index";
+
+Sentry.init({
+    dsn: SENTRY_DSN,
+});
 
 // registerRootComponent calls AppRegistry.registerComponent('main', () => App);
 // It also ensures that whether you load the app in the Expo client or in a native build,
