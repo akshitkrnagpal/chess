@@ -32,7 +32,7 @@ const black = {
 
 const TIME = moment.duration(5, 'minutes');
 
-const useCountdownTimer = options => {
+const useCountdownTimer = (options) => {
     return useTimer({
         initialTime: TIME.asSeconds(),
         timerType: 'DECREMENTAL',

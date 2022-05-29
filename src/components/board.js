@@ -35,12 +35,8 @@ class Board extends React.Component {
     }
 
     handleClick(index) {
-        const {
-            position,
-            selectedIndex,
-            isSelectable,
-            canMoveHereArray,
-        } = this.state;
+        const { position, selectedIndex, isSelectable, canMoveHereArray } =
+            this.state;
 
         if (isSelectable.includes(index)) {
             this.setState({
@@ -93,12 +89,8 @@ class Board extends React.Component {
     renderCells() {
         const { size, currentPlayer } = this.props;
 
-        const {
-            position,
-            selectedIndex,
-            isSelectable,
-            canMoveHereArray,
-        } = this.state;
+        const { position, selectedIndex, isSelectable, canMoveHereArray } =
+            this.state;
 
         const board = position.board;
         const rowViews = [];
@@ -148,7 +140,7 @@ class Board extends React.Component {
                     selected={selected}
                     canMoveHere={canMoveHere}
                     handleClick={this.handleClick.bind(this, index)}
-                />,
+                />
             );
         });
 
