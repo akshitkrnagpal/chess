@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { Dimensions, SafeAreaView, View, Platform } from 'react-native';
+import React from 'react';
+import { Dimensions, SafeAreaView, View } from 'react-native';
 import styled from 'styled-components/native';
 import { useTimer } from 'use-timer';
 import moment from 'moment';

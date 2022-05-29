@@ -34,7 +34,7 @@ const Time = styled(Text)`
 `;
 
 const User = ({ timer, avatar, name }) => {
-    const { time, isRunning } = timer;
+    const { time } = timer;
     return (
         <Container>
             <Avatar source={{ uri: avatar }} />

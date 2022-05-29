@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Button } from 'react-native';
 import Modal from 'react-native-modal';
 import chessRules from 'chess-rules';
@@ -6,48 +6,47 @@ import { calculateBestMove } from 'chess-ai';
 
 import Cell from './cell';
 
-const initialState = {
+const initialBoard = {
     position: chessRules.getInitialPosition(),
     selectedIndex: null,
     isSelectable: [],
     canMoveHereArray: [],
 };
 
-class Board extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = initialState;
-    }
+const Board = (props) => {
+    const [board, setBoard] = useState(initialBoard);
+    const { timers } = props;
 
-    componentDidMount() {
-        const { position } = this.state;
-        const { whiteTimer, blackTimer } = this.props.timers;
+    useEffect(() => {
+        const { position } = board;
+        const { whiteTimer, blackTimer } = timers;
 
         if (position.turn === 'W') {
             whiteTimer.start();
         } else {
             blackTimer.start();
         }
-    }
+    }, []);
 
-    reset() {
-        this.setState(initialState);
-    }
+    const reset = () => {
+        setBoard(initialBoard);
+    };
 
-    handleClick(index) {
+    const handleClick = (index) => {
         const { position, selectedIndex, isSelectable, canMoveHereArray } =
-            this.state;
+            board;
 
         if (isSelectable.includes(index)) {
-            this.setState({
+            setBoard((board) => ({
+                ...board,
                 selectedIndex: index,
                 canMoveHereArray: [],
-            });
+            }));
         }
 
         if (canMoveHereArray.includes(index)) {
             const move = { src: selectedIndex, dst: index };
-            const { whiteTimer, blackTimer } = this.props.timers;
+            const { whiteTimer, blackTimer } = timers;
             const { turn } = position;
             if (turn === 'W') {
                 whiteTimer.pause();
@@ -59,19 +58,21 @@ class Board extends React.Component {
 
             const updatedPosition = chessRules.applyMove(position, move);
 
-            this.setState({
+            setBoard((board) => ({
+                ...board,
                 selectedIndex: null,
                 position: updatedPosition,
                 isSelectable: [],
                 canMoveHereArray: [],
-            });
+            }));
 
             const playComputerMove = () => {
                 const nextMove = calculateBestMove(updatedPosition);
 
-                this.setState({
+                setBoard((board) => ({
+                    ...board,
                     position: chessRules.applyMove(updatedPosition, nextMove),
-                });
+                }));
 
                 if (turn === 'W') {
                     blackTimer.pause();
@@ -84,15 +85,14 @@ class Board extends React.Component {
 
             setTimeout(playComputerMove, 5000);
         }
-    }
+    };
 
-    renderCells() {
-        const { size, currentPlayer } = this.props;
+    const renderCells = () => {
+        const { size } = props;
 
         const { position, selectedIndex, isSelectable, canMoveHereArray } =
-            this.state;
+            board;
 
-        const board = position.board;
         const rowViews = [];
 
         const cellSize = size / 8;
@@ -108,7 +108,7 @@ class Board extends React.Component {
             }
         });
 
-        board.forEach((cell, index) => {
+        position.board.forEach((cell, index) => {
             const rowIndex = Math.floor(index / 8);
             const columnIndex = index % 8;
 
@@ -139,7 +139,7 @@ class Board extends React.Component {
                     piece={piece}
                     selected={selected}
                     canMoveHere={canMoveHere}
-                    handleClick={this.handleClick.bind(this, index)}
+                    handleClick={() => handleClick(index)}
                 />
             );
         });
@@ -155,18 +155,18 @@ class Board extends React.Component {
         boardView.reverse();
 
         return boardView;
-    }
+    };
 
-    getGameStatus() {
-        return chessRules.getGameStatus(this.state.position);
-    }
+    const getGameStatus = () => {
+        return chessRules.getGameStatus(board.position);
+    };
 
-    showModal() {
+    const showModal = () => {
         return (
             <Modal
                 animationType='slide'
                 transparent
-                visible={this.getGameStatus() !== 'OPEN'}
+                visible={getGameStatus() !== 'OPEN'}
                 ariaHideApp={false}
             >
                 <View
@@ -186,38 +186,33 @@ class Board extends React.Component {
                         }}
                     >
                         <Text style={{ fontSize: 18, marginBottom: 14 }}>
-                            {this.getWinnerText()}
+                            {getWinnerText()}
                         </Text>
-                        <Button
-                            title='New Game'
-                            onPress={this.reset.bind(this)}
-                        />
+                        <Button title='New Game' onPress={reset} />
                     </View>
                 </View>
             </Modal>
         );
-    }
+    };
 
-    getWinnerText() {
-        let whiteWon = this.getGameStatus() === 'WHITEWON';
-        let blackWon = this.getGameStatus() === 'BLACKWON';
+    const getWinnerText = () => {
+        let whiteWon = getGameStatus() === 'WHITEWON';
+        let blackWon = getGameStatus() === 'BLACKWON';
 
         if (whiteWon) return 'White Wins';
         if (blackWon) return 'Black Wins';
 
         return 'Match Draw';
-    }
+    };
 
-    render() {
-        return (
-            <View>
-                <View style={{ flexDirection: 'column' }}>
-                    {this.renderCells()}
-                    {this.showModal()}
-                </View>
+    return (
+        <View>
+            <View style={{ flexDirection: 'column' }}>
+                {renderCells()}
+                {showModal()}
             </View>
-        );
-    }
-}
+        </View>
+    );
+};
 
 export default Board;
