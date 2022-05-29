@@ -66,24 +66,29 @@ const Board = (props) => {
                 canMoveHereArray: [],
             }));
 
-            const playComputerMove = () => {
-                const nextMove = calculateBestMove(updatedPosition);
+            if (chessRules.getGameStatus(updatedPosition) === 'OPEN') {
+                const playComputerMove = () => {
+                    const nextMove = calculateBestMove(updatedPosition);
 
-                setBoard((board) => ({
-                    ...board,
-                    position: chessRules.applyMove(updatedPosition, nextMove),
-                }));
+                    setBoard((board) => ({
+                        ...board,
+                        position: chessRules.applyMove(
+                            updatedPosition,
+                            nextMove
+                        ),
+                    }));
 
-                if (turn === 'W') {
-                    blackTimer.pause();
-                    whiteTimer.start();
-                } else {
-                    blackTimer.start();
-                    whiteTimer.pause();
-                }
-            };
+                    if (turn === 'W') {
+                        blackTimer.pause();
+                        whiteTimer.start();
+                    } else {
+                        blackTimer.start();
+                        whiteTimer.pause();
+                    }
+                };
 
-            setTimeout(playComputerMove, 5000);
+                setTimeout(playComputerMove, 1000);
+            }
         }
     };
 
