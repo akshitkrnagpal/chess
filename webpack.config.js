@@ -8,7 +8,6 @@ module.exports = async function (env, argv) {
             ...config.resolve,
             alias: {
                 ...config.resolve.alias,
-                'react-native-modal': 'modal-react-native-web',
                 'styled-components/native': 'styled-components',
             },
         },
