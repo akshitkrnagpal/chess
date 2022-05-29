@@ -6,12 +6,9 @@ import styled from 'styled-components/native';
 
 const Wrapper = styled(SafeAreaView)`
     display: flex;
-    flex-direction: column;
     flex: 1;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
 `;
 
 const Home = ({ navigation }) => {

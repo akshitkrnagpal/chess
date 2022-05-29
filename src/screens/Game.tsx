@@ -1,14 +1,22 @@
 import React from 'react';
 import { Dimensions, View } from 'react-native';
-import styled from 'styled-components/native';
 import { useTimer } from 'use-timer';
 import moment from 'moment';
 import { name, avatar } from 'random-profile-generator';
+import { SafeAreaView } from 'react-native';
+import styled from 'styled-components/native';
 
 import Board from '../components/board';
 import User from '../components/user';
 
-const Wrapper = styled(View)`
+const Wrapper = styled(SafeAreaView)`
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`;
+
+const Container = styled(View)`
     max-width: 375px;
 `;
 
@@ -40,9 +48,11 @@ const Game = () => {
 
     return (
         <Wrapper>
-            <User {...black} timer={blackTimer} />
-            <Board size={size} timers={{ blackTimer, whiteTimer }} />
-            <User {...white} timer={whiteTimer} />
+            <Container>
+                <User {...black} timer={blackTimer} />
+                <Board size={size} timers={{ blackTimer, whiteTimer }} />
+                <User {...white} timer={whiteTimer} />
+            </Container>
         </Wrapper>
     );
 };
