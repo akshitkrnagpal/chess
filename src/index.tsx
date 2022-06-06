@@ -10,7 +10,7 @@ const AppTheme = {
     ...DarkTheme,
     colors: {
         ...DarkTheme.colors,
-        background: 'rgb(255, 255, 255)',
+        background: '#302e2b',
     },
 };
 
@@ -24,15 +24,11 @@ const App = () => {
                         fontWeight: '600',
                     },
                     headerStyle: {
-                        backgroundColor: 'rgb(48, 46, 43)',
+                        backgroundColor: '#262522',
                     },
                 }}
             >
-                <Stack.Screen
-                    name='Home'
-                    component={Home}
-                    options={{ title: 'Chess' }}
-                />
+                <Stack.Screen name='Home' component={Home} options={{ title: 'Chess' }} />
                 <Stack.Screen name='Game' component={Game} />
             </Stack.Navigator>
         </NavigationContainer>

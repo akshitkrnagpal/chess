@@ -2092,6 +2092,11 @@
     "@types/node" "*"
     "@types/responselike" "*"
 
+"@types/chess.js@^0.13.1":
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/@types/chess.js/-/chess.js-0.13.1.tgz#dda08630957a87375fbadbee1ad3484b8316e1ab"
+  integrity sha512-g5+1ClE0exhD+U7LCcclzBons3d/7ensY61pIoPIdh1VGWMrfMjW0RlI3AYZOXjvc+9Y4KM6lfDiBhXhb7FZag==
+
 "@types/glob@^7.1.1":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.2.0.tgz#bc1b5bf3aa92f25bd5dd39f35c57361bdce5b2eb"
@@ -3671,17 +3676,10 @@ charenc@0.0.2, charenc@~0.0.1:
   resolved "https://registry.yarnpkg.com/charenc/-/charenc-0.0.2.tgz#c0a1d2f3a7092e03774bfa83f14c0fc5790a8667"
   integrity sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==
 
-"chess-ai@github:akshitkrnagpal/chess-ai":
-  version "0.1.0"
-  resolved "https://codeload.github.com/akshitkrnagpal/chess-ai/tar.gz/8b3745e9359eb7ef7851f8db08f0c93da14df19b"
-  dependencies:
-    chess-rules "github:akshitkrnagpal/chess-rules"
-
-"chess-rules@github:akshitkrnagpal/chess-rules":
-  version "0.11.5"
-  resolved "https://codeload.github.com/akshitkrnagpal/chess-rules/tar.gz/45c27e341a74be9f965198f49a2bdafbcd61471a"
-  dependencies:
-    underscore-plus "^1.6.6"
+chess.js@^0.13.2:
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/chess.js/-/chess.js-0.13.2.tgz#a917667a5bc79c5de325fe7da8c479e3959b30fd"
+  integrity sha512-MVr9IfU1ZhyPMAW4BfwsgeSyB9sliREiWhpimNDZN0Q6JMmb9W0drGlUvemqheqkVGa+/FgypLv/FexUBLBTow==
 
 chokidar@^2.1.8:
   version "2.1.8"
@@ -4332,7 +4330,7 @@ css-select@^2.0.0:
     domutils "^1.7.0"
     nth-check "^1.0.2"
 
-css-select@^4.1.3:
+css-select@^4.1.3, css-select@^4.2.1:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/css-select/-/css-select-4.3.0.tgz#db7129b2846662fd8628cfc496abb2b59e41529b"
   integrity sha512-wPpOYtnsVontu2mODhA19JrqWxNsfdatRKd64kmpRbQgh1KtItko5sTnEpPdpSaJszTOhEMlF/RPz28qj4HqhQ==
@@ -4360,7 +4358,7 @@ css-tree@1.0.0-alpha.37:
     mdn-data "2.0.4"
     source-map "^0.6.1"
 
-css-tree@^1.1.2:
+css-tree@^1.0.0-alpha.39, css-tree@^1.1.2:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.1.3.tgz#eb4870fb6fd7707327ec95c2ff2ab09b5e8db91d"
   integrity sha512-tRpdppF7TRazZrjJ6v3stzv93qxRcSsFmW6cX0Zm2NVKpxE1WV1HblnghVv9TreireHkqI/VDEsfolRF1p6y7Q==
@@ -9917,6 +9915,14 @@ react-native-screens@~3.11.1:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
+react-native-svg@12.3.0:
+  version "12.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-12.3.0.tgz#40f657c5d1ee366df23f3ec8dae76fd276b86248"
+  integrity sha512-ESG1g1j7/WLD7X3XRFTQHVv0r6DpbHNNcdusngAODIxG88wpTWUZkhcM3A2HJTb+BbXTFDamHv7FwtRKWQ/ALg==
+  dependencies:
+    css-select "^4.2.1"
+    css-tree "^1.0.0-alpha.39"
+
 react-native-web@0.17.7:
   version "0.17.7"
   resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.17.7.tgz#038899dbc94467a0ca0be214b88a30e0c117b176"
@@ -11653,18 +11659,6 @@ unbox-primitive@^1.0.2:
     has-bigints "^1.0.2"
     has-symbols "^1.0.3"
     which-boxed-primitive "^1.0.2"
-
-underscore-plus@^1.6.6:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/underscore-plus/-/underscore-plus-1.7.0.tgz#107f1900c520ac1fefe4edec6580a7ff08a99d0f"
-  integrity sha512-A3BEzkeicFLnr+U/Q3EyWwJAQPbA19mtZZ4h+lLq3ttm9kn8WC4R3YpuJZEXmWdLjYP47Zc8aLZm9kwdv+zzvA==
-  dependencies:
-    underscore "^1.9.1"
-
-underscore@^1.9.1:
-  version "1.13.3"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.13.3.tgz#54bc95f7648c5557897e5e968d0f76bc062c34ee"
-  integrity sha512-QvjkYpiD+dJJraRA8+dGAU4i7aBbb2s0S3jA45TFOvg2VgqvdCDd/3N6CqA8gluk1W91GLoXg5enMUx560QzuA==
 
 unicode-canonical-property-names-ecmascript@^2.0.0:
   version "2.0.0"

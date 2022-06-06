@@ -1,24 +1,15 @@
-import React from 'react';
-import { SafeAreaView, Image, Button } from 'react-native';
 import styled from 'styled-components/native';
 
-import homeImage from '../images/home.jpg';
+import EmptyBoard from '../components/EmptyBoard';
 
-const Wrapper = styled(SafeAreaView)`
+const Wrapper = styled.SafeAreaView`
     display: flex;
     flex: 1;
-    justify-content: center;
     align-items: center;
 `;
 
-const HomeImage = styled(Image)`
-    width: 100%;
-    height: 30%;
-`;
-
 const PlayButton = styled.Button`
-    width: 100%;
-    background-color: #000;
+    width: 400px;
 `;
 
 const Home = ({ navigation }) => {
@@ -27,8 +18,8 @@ const Home = ({ navigation }) => {
     };
     return (
         <Wrapper>
-            <HomeImage source={homeImage} />
-            <PlayButton title='Play Now' onPress={onPress} />
+            <EmptyBoard size={400} />
+            <PlayButton color='#000' title='Play Now' onPress={onPress} />
         </Wrapper>
     );
 };
