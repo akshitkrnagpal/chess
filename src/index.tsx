@@ -1,12 +1,15 @@
-import { NavigationContainer, DarkTheme } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer, DarkTheme, Theme } from '@react-navigation/native';
+import {
+    createNativeStackNavigator,
+    NativeStackNavigationOptions,
+} from '@react-navigation/native-stack';
 
 import Game from './screens/Game';
 import Home from './screens/Home';
 
 const Stack = createNativeStackNavigator();
 
-const AppTheme = {
+const appTheme: Theme = {
     ...DarkTheme,
     colors: {
         ...DarkTheme.colors,
@@ -14,20 +17,20 @@ const AppTheme = {
     },
 };
 
+const screenOptions: NativeStackNavigationOptions = {
+    headerTitleStyle: {
+        fontFamily: 'Verdana',
+        fontWeight: '600',
+    },
+    headerStyle: {
+        backgroundColor: '#262522',
+    },
+};
+
 const App = () => {
     return (
-        <NavigationContainer theme={AppTheme}>
-            <Stack.Navigator
-                screenOptions={{
-                    headerTitleStyle: {
-                        fontFamily: 'Verdana',
-                        fontWeight: '600',
-                    },
-                    headerStyle: {
-                        backgroundColor: '#262522',
-                    },
-                }}
-            >
+        <NavigationContainer theme={appTheme}>
+            <Stack.Navigator screenOptions={screenOptions}>
                 <Stack.Screen name='Home' component={Home} options={{ title: 'Chess' }} />
                 <Stack.Screen name='Game' component={Game} />
             </Stack.Navigator>
