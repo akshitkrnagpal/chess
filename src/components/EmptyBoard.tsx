@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { FlatGrid } from 'react-native-super-grid';
 
 const BOARD_SIZE = 8;
 
@@ -7,13 +8,11 @@ interface BoardProps {
 }
 
 interface CellProps {
+    size: number;
     color: 'light' | 'dark';
 }
 
 const Board = styled.View<BoardProps>`
-    display: grid;
-    grid-template-columns: repeat(${BOARD_SIZE}, 1fr);
-    grid-template-rows: repeat(${BOARD_SIZE}, 1fr);
     width: ${(props) => props.size}px;
     height: ${(props) => props.size}px;
     background-color: #ccc;
@@ -22,21 +21,27 @@ const Board = styled.View<BoardProps>`
 `;
 
 const Cell = styled.View<CellProps>`
-    --light-color: #eeeed2;
-    --dark-color: #769656;
-    ${(props) => `background-color: var(--${props.color}-color)`};
+    width: ${(props) => props.size}px;
+    height: ${(props) => props.size}px;
+    background-color: ${(props) => (props.color === 'dark' ? '#769656' : '#eeeed2')};
 `;
 
 const EmptyBoard = ({ size }) => {
-    const n = BOARD_SIZE * BOARD_SIZE;
     return (
         <Board size={size}>
-            {[...Array(n)].map((_, index) => {
-                const col = Math.floor(index / 8);
-                const row = index % 8;
-                const color = (row + col) % 2 === 0 ? 'light' : 'dark';
-                return <Cell color={color} key={index.toString()} />;
-            })}
+            <FlatGrid
+                staticDimension={size}
+                itemDimension={size / BOARD_SIZE}
+                fixed
+                spacing={0}
+                data={[...Array(BOARD_SIZE * BOARD_SIZE).keys()]}
+                renderItem={({ item: index }) => {
+                    const col = Math.floor(index / BOARD_SIZE);
+                    const row = index % BOARD_SIZE;
+                    const color = (row + col) % 2 === 0 ? 'light' : 'dark';
+                    return <Cell size={size / BOARD_SIZE} color={color} key={index.toString()} />;
+                }}
+            />
         </Board>
     );
 };

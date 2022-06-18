@@ -1,12 +1,11 @@
 import useChess from '../hooks/useChess';
 import EmptyBoard from './EmptyBoard';
 
-import styled from 'styled-components/native';
-import Pieces from './Pieces';
-import Moves from './Moves';
 import { useState } from 'react';
-
-const SIZE = 400;
+import { useWindowDimensions } from 'react-native';
+import styled from 'styled-components/native';
+import Moves from './Moves';
+import Pieces from './Pieces';
 
 const Wrapper = styled.View`
     position: relative;
@@ -21,8 +20,10 @@ const useRandomMove = (chess) => {
 };
 
 const Chess = () => {
+    const { width } = useWindowDimensions();
     const chess = useChess();
     const [visibleMoves, setVisibleMoves] = useState([]);
+    const boardSize = Math.min(width, 400);
 
     useRandomMove(chess);
 
@@ -39,9 +40,9 @@ const Chess = () => {
 
     return (
         <Wrapper>
-            <EmptyBoard size={SIZE} />
-            <Pieces board={chess.board()} onSelectPiece={handleSelectPiece} size={SIZE} />
-            <Moves visibleMoves={visibleMoves} onSelectMove={handleSelectMove} size={SIZE} />
+            <EmptyBoard size={boardSize} />
+            <Pieces board={chess.board()} onSelectPiece={handleSelectPiece} size={boardSize} />
+            <Moves visibleMoves={visibleMoves} onSelectMove={handleSelectMove} size={boardSize} />
         </Wrapper>
     );
 };
