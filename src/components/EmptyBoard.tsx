@@ -1,34 +1,19 @@
-import styled from 'styled-components/native';
+import { View } from 'dripsy';
 import { FlatGrid } from 'react-native-super-grid';
 
 const BOARD_SIZE = 8;
 
-interface BoardProps {
-    size: number;
-}
-
-interface CellProps {
-    size: number;
-    color: 'light' | 'dark';
-}
-
-const Board = styled.View<BoardProps>`
-    width: ${(props) => props.size}px;
-    height: ${(props) => props.size}px;
-    background-color: #ccc;
-    border-radius: 1%;
-    overflow: hidden;
-`;
-
-const Cell = styled.View<CellProps>`
-    width: ${(props) => props.size}px;
-    height: ${(props) => props.size}px;
-    background-color: ${(props) => (props.color === 'dark' ? '#769656' : '#eeeed2')};
-`;
-
 const EmptyBoard = ({ size }) => {
     return (
-        <Board size={size}>
+        <View
+            sx={{
+                width: size,
+                height: size,
+                backgroundColor: '#ccc',
+                borderRadius: '1%',
+                overflow: 'hidden',
+            }}
+        >
             <FlatGrid
                 staticDimension={size}
                 itemDimension={size / BOARD_SIZE}
@@ -38,11 +23,20 @@ const EmptyBoard = ({ size }) => {
                 renderItem={({ item: index }) => {
                     const col = Math.floor(index / BOARD_SIZE);
                     const row = index % BOARD_SIZE;
-                    const color = (row + col) % 2 === 0 ? 'light' : 'dark';
-                    return <Cell size={size / BOARD_SIZE} color={color} key={index.toString()} />;
+                    const color = (row + col) % 2 === 0 ? '#eeeed2' : '#769656';
+                    return (
+                        <View
+                            key={index.toString()}
+                            sx={{
+                                width: size / BOARD_SIZE,
+                                height: size / BOARD_SIZE,
+                                backgroundColor: color,
+                            }}
+                        />
+                    );
                 }}
             />
-        </Board>
+        </View>
     );
 };
 

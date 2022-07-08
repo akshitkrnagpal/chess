@@ -1,24 +1,30 @@
+import { Pressable, SafeAreaView, Text } from 'dripsy';
 import { useWindowDimensions } from 'react-native';
-import styled from 'styled-components/native';
 
 import EmptyBoard from '../components/EmptyBoard';
-
-const Wrapper = styled.SafeAreaView`
-    display: flex;
-    flex: 1;
-    align-items: center;
-`;
-
-const PlayButton = styled.Button``;
 
 const Home = ({ navigation }) => {
     const { width } = useWindowDimensions();
     const boardSize = Math.min(width, 400);
     return (
-        <Wrapper>
+        <SafeAreaView sx={{ display: 'flex', flex: 1, alignItems: 'center' }}>
             <EmptyBoard size={boardSize} />
-            <PlayButton color='#000' title='Play Now' onPress={() => navigation.navigate('Game')} />
-        </Wrapper>
+            <Pressable
+                sx={{ padding: 2, backgroundColor: 'black', borderRadius: 4 }}
+                onPress={() => navigation.navigate('Game')}
+            >
+                <Text
+                    sx={{
+                        color: 'white',
+                        textAlign: 'center',
+                        textTransform: 'uppercase',
+                        fontWeight: 500,
+                    }}
+                >
+                    Play Now
+                </Text>
+            </Pressable>
+        </SafeAreaView>
     );
 };
 

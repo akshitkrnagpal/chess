@@ -1,16 +1,7 @@
 import PieceImages from '../images/pieces';
 
-import styled from 'styled-components/native';
-
-const PieceWrapper = styled.TouchableWithoutFeedback``;
-
-const Piece = styled.Image<{ bottom: number; left: number; size: number }>`
-    position: absolute;
-    width: ${(props) => props.size}px;
-    height: ${(props) => props.size}px;
-    left: ${(props) => props.left}px;
-    bottom: ${(props) => props.bottom}px;
-`;
+import { Image } from 'dripsy';
+import { TouchableWithoutFeedback } from 'react-native';
 
 const Pieces = ({ board, size, onSelectPiece }) => {
     const cellSize = size / 8;
@@ -23,14 +14,21 @@ const Pieces = ({ board, size, onSelectPiece }) => {
             const left = (file.charCodeAt(0) - 'a'.charCodeAt(0)) * cellSize;
             const bottom = (rank - 1) * cellSize;
             return (
-                <PieceWrapper key={`piece-${square}`} onPress={() => onSelectPiece(square)}>
-                    <Piece
-                        size={size / 8}
-                        left={left}
-                        bottom={bottom}
+                <TouchableWithoutFeedback
+                    key={`piece-${square}`}
+                    onPress={() => onSelectPiece(square)}
+                >
+                    <Image
+                        sx={{
+                            position: 'absolute',
+                            width: cellSize,
+                            height: cellSize,
+                            left,
+                            bottom,
+                        }}
                         source={PieceImages[`${color}${type}`.toUpperCase()]}
                     />
-                </PieceWrapper>
+                </TouchableWithoutFeedback>
             );
         });
 };

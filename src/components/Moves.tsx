@@ -1,15 +1,6 @@
-import styled from 'styled-components/native';
+import { View } from 'dripsy';
+import { TouchableWithoutFeedback } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
-
-const MoveWrapper = styled.TouchableWithoutFeedback``;
-
-const Move = styled.View<{ bottom: number; left: number; size: number }>`
-    position: absolute;
-    width: ${(props) => props.size}px;
-    height: ${(props) => props.size}px;
-    left: ${(props) => props.left}px;
-    bottom: ${(props) => props.bottom}px;
-`;
 
 const Moves = ({ visibleMoves, size, onSelectMove }) => {
     const cellSize = size / 8;
@@ -19,8 +10,10 @@ const Moves = ({ visibleMoves, size, onSelectMove }) => {
         const left = (file.charCodeAt(0) - 'a'.charCodeAt(0)) * cellSize;
         const bottom = (rank - 1) * cellSize;
         return (
-            <MoveWrapper onPressOut={() => onSelectMove(move)} key={`move-${to}`}>
-                <Move size={size / 8} left={left} bottom={bottom}>
+            <TouchableWithoutFeedback onPressOut={() => onSelectMove(move)} key={`move-${to}`}>
+                <View
+                    sx={{ position: 'absolute', width: size / 8, height: size / 8, left, bottom }}
+                >
                     <Svg height='100%' width='100%' viewBox='0 0 100 100'>
                         <Circle
                             cx='50'
@@ -33,8 +26,8 @@ const Moves = ({ visibleMoves, size, onSelectMove }) => {
                             strokeWidth={captured ? '10' : undefined}
                         />
                     </Svg>
-                </Move>
-            </MoveWrapper>
+                </View>
+            </TouchableWithoutFeedback>
         );
     });
 };

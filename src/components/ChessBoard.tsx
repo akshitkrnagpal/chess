@@ -1,15 +1,10 @@
-import useChess from '../hooks/useChess';
-import EmptyBoard from './EmptyBoard';
-
+import { View } from 'dripsy';
 import { useState } from 'react';
 import { useWindowDimensions } from 'react-native';
-import styled from 'styled-components/native';
+import useChess from '../hooks/useChess';
+import EmptyBoard from './EmptyBoard';
 import Moves from './Moves';
 import Pieces from './Pieces';
-
-const Wrapper = styled.View`
-    position: relative;
-`;
 
 const useRandomMove = (chess) => {
     while (!chess.game_over() && chess.turn() === 'b') {
@@ -39,11 +34,11 @@ const Chess = () => {
     };
 
     return (
-        <Wrapper>
+        <View sx={{ position: 'relative' }}>
             <EmptyBoard size={boardSize} />
             <Pieces board={chess.board()} onSelectPiece={handleSelectPiece} size={boardSize} />
             <Moves visibleMoves={visibleMoves} onSelectMove={handleSelectMove} size={boardSize} />
-        </Wrapper>
+        </View>
     );
 };
 
