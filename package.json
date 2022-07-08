@@ -48,7 +48,7 @@
         "@types/moment-duration-format": "^2.2.3",
         "@types/react": "~17.0.41",
         "@types/react-native": "~0.66.13",
-        "babel-plugin-dotenv-import": "^2.2.0",
+        "dotenv": "^16.0.1",
         "expo-cli": "^5.4.7",
         "prettier": "^2.6.2",
         "typescript": "~4.3.5"
