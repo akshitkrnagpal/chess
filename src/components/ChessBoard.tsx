@@ -7,7 +7,7 @@ import Moves from './Moves';
 import Pieces from './Pieces';
 
 const useRandomMove = (chess) => {
-    while (!chess.game_over() && chess.turn() === 'b') {
+    while (!chess.isGameOver() && chess.turn() === 'b') {
         const moves = chess.moves();
         const move = moves[Math.floor(Math.random() * moves.length)];
         chess.move(move);

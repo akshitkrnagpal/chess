@@ -37,7 +37,6 @@ export default {
                 config: {
                     organization: "your sentry organization's short name here",
                     project: "your sentry project's name here",
-                    authToken: 'your auth token here',
                 },
             },
         ],
